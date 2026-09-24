@@ -362,7 +362,7 @@ if (
     const whyTotalSlides =
         whyDots.length;
 
-    const WHY_AUTO_DELAY = 4000;
+    const WHY_AUTO_DELAY = 2000;
 
 
     /* =====================================================

@@ -2389,7 +2389,7 @@
 
     width: 100%;
 
-    padding: 150px 0 130px;
+    padding: 110px 0 100px;
 
     overflow: hidden;
 
@@ -5239,7 +5239,7 @@
 .why-section {
     position: relative;
     overflow: hidden;
-    padding: 150px 0 140px;
+    padding: 100px 0 100px;
     background:
         radial-gradient(
             circle at 88% 18%,
@@ -5368,7 +5368,7 @@
 .why-slide {
     position: relative;
     flex: 0 0 100%;
-    min-height: 530px;
+    min-height: 500px;
     padding: 65px 70px 55px;
     display: flex;
     flex-direction: column;
