@@ -1,474 +1,350 @@
-/* =========================================================
-   09ZERO - CONNECT.JS
-   FORM INTERACTION
-   SERVICE SELECTION
-   BUDGET SELECTION
-   VALIDATION
-========================================================= */
-
 "use strict";
 
 
-/* =========================================================
-   ELEMENTS
-========================================================= */
+// =====================================================
+// 09ZERO - CONNECT PAGE
+// NODE.JS BACKEND CONNECTION
+// =====================================================
 
-const connectForm =
-    document.getElementById("connectForm");
+document.addEventListener("DOMContentLoaded", () => {
 
-const connectSubmit =
-    document.getElementById("connectSubmit");
+    const connectForm = document.getElementById("connectForm");
+    const connectSubmit = document.getElementById("connectSubmit");
+    const connectFormStatus = document.getElementById("connectFormStatus");
 
-const connectStatus =
-    document.getElementById("connectFormStatus");
+    const serviceInput = document.getElementById("service");
+    const budgetInput = document.getElementById("budget");
 
-const serviceOptions =
-    document.querySelectorAll(
-        ".connect-service-option"
+    const serviceButtons = document.querySelectorAll(
+        "[data-service]"
     );
 
-const budgetOptions =
-    document.querySelectorAll(
-        ".connect-budget-option"
+    const budgetButtons = document.querySelectorAll(
+        "[data-budget]"
     );
 
-const serviceInput =
-    document.getElementById("service");
 
-const budgetInput =
-    document.getElementById("budget");
+    // =================================================
+    // SERVICE BUTTONS
+    // =================================================
 
+    serviceButtons.forEach((button) => {
 
-/* =========================================================
-   SERVICE SELECTION
-========================================================= */
+        button.addEventListener("click", () => {
 
-serviceOptions.forEach(function (button) {
+            serviceButtons.forEach((item) => {
+                item.classList.remove("active");
+            });
 
-    button.addEventListener(
-        "click",
-        function () {
-
-            serviceOptions.forEach(
-                function (item) {
-                    item.classList.remove("active");
-                }
-            );
-
-            this.classList.add("active");
+            button.classList.add("active");
 
             if (serviceInput) {
                 serviceInput.value =
-                    this.dataset.service || "";
+                    button.dataset.service || "";
             }
 
-            clearFieldError("service");
-        }
-    );
+        });
 
-});
+    });
 
 
-/* =========================================================
-   BUDGET SELECTION
-========================================================= */
+    // =================================================
+    // BUDGET BUTTONS
+    // =================================================
 
-budgetOptions.forEach(function (button) {
+    budgetButtons.forEach((button) => {
 
-    button.addEventListener(
-        "click",
-        function () {
+        button.addEventListener("click", () => {
 
-            budgetOptions.forEach(
-                function (item) {
-                    item.classList.remove("active");
-                }
-            );
+            budgetButtons.forEach((item) => {
+                item.classList.remove("active");
+            });
 
-            this.classList.add("active");
+            button.classList.add("active");
 
             if (budgetInput) {
                 budgetInput.value =
-                    this.dataset.budget || "";
+                    button.dataset.budget || "";
             }
 
+        });
+
+    });
+
+
+    // =================================================
+    // STATUS MESSAGE
+    // =================================================
+
+    function setConnectStatus(message, type = "") {
+
+        if (!connectFormStatus) {
+            return;
         }
-    );
 
-});
+        connectFormStatus.textContent = message;
 
+        connectFormStatus.className =
+            "connect-form-status";
 
-/* =========================================================
-   FIELD ERROR
-========================================================= */
-
-function showFieldError(
-    fieldName,
-    message
-) {
-
-    const field =
-        document.getElementById(fieldName);
-
-    const error =
-        document.querySelector(
-            `[data-error-for="${fieldName}"]`
-        );
-
-    if (field) {
-
-        const parent =
-            field.closest(".connect-field");
-
-        if (parent) {
-            parent.classList.add("has-error");
+        if (type) {
+            connectFormStatus.classList.add(type);
         }
 
     }
 
-    if (error) {
-        error.textContent = message;
-    }
 
-}
+    // =================================================
+    // FORM SUBMIT
+    // =================================================
 
+    if (connectForm) {
 
-function clearFieldError(fieldName) {
-
-    const field =
-        document.getElementById(fieldName);
-
-    const error =
-        document.querySelector(
-            `[data-error-for="${fieldName}"]`
-        );
-
-    if (field) {
-
-        const parent =
-            field.closest(".connect-field");
-
-        if (parent) {
-            parent.classList.remove("has-error");
-        }
-
-    }
-
-    if (error) {
-        error.textContent = "";
-    }
-
-}
-
-
-/* =========================================================
-   EMAIL VALIDATION
-========================================================= */
-
-function isValidEmail(email) {
-
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        .test(email);
-
-}
-
-
-/* =========================================================
-   FORM VALIDATION
-========================================================= */
-
-function validateConnectForm() {
-
-    let isValid = true;
-
-    const name =
-        document.getElementById("name");
-
-    const email =
-        document.getElementById("email");
-
-    const message =
-        document.getElementById("message");
-
-
-    /* NAME */
-
-    if (!name || !name.value.trim()) {
-
-        showFieldError(
-            "name",
-            "Please enter your name."
-        );
-
-        isValid = false;
-
-    } else {
-
-        clearFieldError("name");
-
-    }
-
-
-    /* EMAIL */
-
-    if (!email || !email.value.trim()) {
-
-        showFieldError(
-            "email",
-            "Please enter your email."
-        );
-
-        isValid = false;
-
-    } else if (
-        !isValidEmail(
-            email.value.trim()
-        )
-    ) {
-
-        showFieldError(
-            "email",
-            "Please enter a valid email."
-        );
-
-        isValid = false;
-
-    } else {
-
-        clearFieldError("email");
-
-    }
-
-
-    /* SERVICE */
-
-    if (
-        serviceInput &&
-        !serviceInput.value.trim()
-    ) {
-
-        showFieldError(
-            "service",
-            "Please select a service."
-        );
-
-        isValid = false;
-
-    } else {
-
-        clearFieldError("service");
-
-    }
-
-
-    /* MESSAGE */
-
-    if (
-        !message ||
-        !message.value.trim()
-    ) {
-
-        showFieldError(
-            "message",
-            "Please tell us about your project."
-        );
-
-        isValid = false;
-
-    } else {
-
-        clearFieldError("message");
-
-    }
-
-
-    return isValid;
-
-}
-
-
-/* =========================================================
-   STATUS
-========================================================= */
-
-function setConnectStatus(
-    message,
-    type
-) {
-
-    if (!connectStatus) {
-        return;
-    }
-
-    connectStatus.textContent =
-        message;
-
-    connectStatus.className =
-        "connect-form-status";
-
-    if (type) {
-        connectStatus.classList.add(type);
-    }
-
-}
-
-
-/* =========================================================
-   FORM SUBMIT
-========================================================= */
-
-if (connectForm) {
-
-    connectForm.addEventListener(
-        "submit",
-        async function (event) {
+        connectForm.addEventListener("submit", async (event) => {
 
             event.preventDefault();
 
 
-            setConnectStatus("", "");
+            // ---------------------------------------------
+            // GET FORM VALUES
+            // ---------------------------------------------
+
+            const name =
+                document.getElementById("name")?.value.trim() || "";
+
+            const company =
+                document.getElementById("company")?.value.trim() || "";
+
+            const email =
+                document.getElementById("email")?.value.trim() || "";
+
+            const phone =
+                document.getElementById("phone")?.value.trim() || "";
+
+            const service =
+                serviceInput?.value.trim() || "";
+
+            const budget =
+                budgetInput?.value.trim() || "";
+
+            const message =
+                document.getElementById("message")?.value.trim() || "";
 
 
-            /* VALIDATION */
+            // ---------------------------------------------
+            // BASIC VALIDATION
+            // ---------------------------------------------
 
-            if (!validateConnectForm()) {
+            if (!name) {
 
                 setConnectStatus(
-                    "Please complete the required fields.",
+                    "Please enter your name.",
                     "error"
                 );
 
-                const firstError =
-                    document.querySelector(
-                        ".has-error input, .has-error textarea"
-                    );
-
-                if (firstError) {
-                    firstError.focus();
-                }
+                document.getElementById("name")?.focus();
 
                 return;
-
             }
 
 
-            /* BUTTON LOADING */
+            if (!email) {
 
-            const originalButtonHTML =
-                connectSubmit
-                    ? connectSubmit.innerHTML
-                    : "";
+                setConnectStatus(
+                    "Please enter your email.",
+                    "error"
+                );
+
+                document.getElementById("email")?.focus();
+
+                return;
+            }
+
+
+            if (!service) {
+
+                setConnectStatus(
+                    "Please select a service.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (!message) {
+
+                setConnectStatus(
+                    "Please tell us about your project.",
+                    "error"
+                );
+
+                document.getElementById("message")?.focus();
+
+                return;
+            }
+
+
+            // =================================================
+            // LOADING STATE
+            // =================================================
+
+            const originalButtonText =
+                connectSubmit?.textContent || "Send Enquiry";
 
             if (connectSubmit) {
-
-                connectSubmit.disabled =
-                    true;
-
-                connectSubmit.innerHTML =
-                    `
-                    <span>Sending...</span>
-                    <span class="connect-submit-arrow">...</span>
-                    `;
-
+                connectSubmit.disabled = true;
+                connectSubmit.textContent = "Sending...";
             }
-
-
-            /*
-               ------------------------------------------------
-               TEMPORARY FRONTEND SUCCESS
-               ------------------------------------------------
-
-               Supabase connection will be added here.
-
-               Do NOT add fake lead storage.
-            */
-
-            await new Promise(
-                function (resolve) {
-                    setTimeout(
-                        resolve,
-                        700
-                    );
-                }
-            );
-
 
             setConnectStatus(
-                "Your enquiry form is ready. Supabase submission will be connected next.",
-                "success"
+                "Sending your enquiry...",
+                "loading"
             );
 
 
-            if (connectSubmit) {
+            try {
 
-                connectSubmit.disabled =
-                    false;
+                // =============================================
+                // FORM DATA
+                // =============================================
 
-                connectSubmit.innerHTML =
-                    originalButtonHTML;
+                const formData = {
+
+                    name: name,
+
+                    company: company,
+
+                    email: email,
+
+                    phone: phone,
+
+                    service: service,
+
+                    budget: budget,
+
+                    message: message
+
+                };
+
+
+                // =============================================
+                // SEND TO NODE.JS BACKEND
+                // =============================================
+
+                const response = await fetch(
+                    "http://localhost:5050/api/connect",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify(formData)
+                    }
+                );
+
+
+                const result = await response.json();
+
+
+                // =============================================
+                // BACKEND ERROR
+                // =============================================
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        result.message ||
+                        "Unable to send enquiry."
+                    );
+
+                }
+
+
+                // =============================================
+                // SUCCESS
+                // =============================================
+
+                console.log(
+                    "09ZERO Node.js response:",
+                    result
+                );
+
+
+                setConnectStatus(
+                    "Thank you! Your enquiry has been received successfully. 🚀",
+                    "success"
+                );
+
+
+                // Reset form
+
+                connectForm.reset();
+
+
+                // Reset service buttons
+
+                serviceButtons.forEach((button) => {
+                    button.classList.remove("active");
+                });
+
+
+                // Reset budget buttons
+
+                budgetButtons.forEach((button) => {
+                    button.classList.remove("active");
+                });
+
+
+                if (serviceInput) {
+                    serviceInput.value = "";
+                }
+
+                if (budgetInput) {
+                    budgetInput.value = "";
+                }
+
+
+            } catch (error) {
+
+                console.error(
+                    "09ZERO Node.js error:",
+                    error
+                );
+
+
+                setConnectStatus(
+                    "Unable to connect to the server. Please try again.",
+                    "error"
+                );
+
+
+            } finally {
+
+                if (connectSubmit) {
+
+                    connectSubmit.disabled = false;
+
+                    connectSubmit.textContent =
+                        originalButtonText;
+
+                }
 
             }
 
-        }
-    );
+        });
 
-}
+    }
 
 
-/* =========================================================
-   LIVE FIELD ERROR CLEAR
-========================================================= */
+    // =================================================
+    // CONSOLE
+    // =================================================
 
-const connectInputs =
-    document.querySelectorAll(
-        ".connect-field input, .connect-field textarea"
-    );
-
-connectInputs.forEach(function (input) {
-
-    input.addEventListener(
-        "input",
-        function () {
-
-            clearFieldError(
-                this.id
-            );
-
-        }
+    console.log(
+        "09ZERO - Connect Page JS Loaded 🚀"
     );
 
 });
-
-
-/* =========================================================
-   ESCAPE STATUS
-========================================================= */
-
-document.addEventListener(
-    "keydown",
-    function (event) {
-
-        if (
-            event.key === "Escape" &&
-            connectStatus
-        ) {
-
-            setConnectStatus(
-                "",
-                ""
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   CONSOLE
-========================================================= */
-
-console.log(
-    "09ZERO - Connect Page JS Loaded"
-);
-
