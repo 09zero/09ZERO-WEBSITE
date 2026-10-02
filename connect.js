@@ -263,6 +263,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
+
+
+
+                // GA4 LEAD TRACKING
+                
+                if (typeof window.gtag === "function") {
+                    
+                     window.gtag("event", "generate_lead");
+                    
+                        console.log("09ZERO GA4: generate_lead event sent");
+                 }
+
+
                 // =============================================
                 // SUCCESS
                 // =============================================
