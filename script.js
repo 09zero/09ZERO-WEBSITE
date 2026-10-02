@@ -766,3 +766,42 @@ if (
     );
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================
+   09ZERO WELCOME SCREEN
+========================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+    const welcomeScreen = document.getElementById("welcome-screen");
+
+    if (!welcomeScreen) return;
+
+    setTimeout(() => {
+        welcomeScreen.classList.add("hide");
+
+        setTimeout(() => {
+            welcomeScreen.remove();
+        }, 900);
+
+    }, 2200);
+});
+
