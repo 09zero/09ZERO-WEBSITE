@@ -9408,3 +9408,452 @@ REDUCED MOTION
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================
+   09ZERO — PREMIUM PURPLE THEME
+   BLACK + ELECTRIC PURPLE + CYAN
+   Append at the END of existing style.css
+========================================== */
+
+:root {
+    --z-bg: #09090F;
+    --z-bg-soft: #0D0D16;
+    --z-card: #171725;
+    --z-card-hover: #1E1E30;
+
+    --z-purple: #8B5CF6;
+    --z-purple-light: #A78BFA;
+    --z-purple-dark: #6D28D9;
+
+    --z-cyan: #22D3EE;
+
+    --z-white: #F8FAFC;
+    --z-muted: #A1A1AA;
+
+    --z-border: rgba(167, 139, 250, 0.18);
+    --z-glow: rgba(139, 92, 246, 0.20);
+}
+
+/* GLOBAL */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--z-bg);
+    color: var(--z-white);
+}
+
+::selection {
+    background: var(--z-purple);
+    color: #ffffff;
+}
+
+/* NAVBAR */
+
+.site-header {
+    background: rgba(9, 9, 15, 0.94) !important;
+    border-bottom: 1px solid var(--z-border) !important;
+}
+
+.navbar-logo span {
+    color: var(--z-purple-light) !important;
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+    color: var(--z-purple-light) !important;
+}
+
+.nav-link::after {
+    background: var(--z-purple) !important;
+}
+
+.nav-cta {
+    background: var(--z-purple) !important;
+    color: #ffffff !important;
+}
+
+.nav-cta:hover {
+    background: var(--z-purple-dark) !important;
+    box-shadow: 0 10px 35px var(--z-glow) !important;
+}
+
+.menu-toggle {
+    border-color: var(--z-border) !important;
+    background: var(--z-card) !important;
+}
+
+/* HERO */
+
+.hero-section {
+    background:
+        radial-gradient(
+            circle at 75% 40%,
+            rgba(139, 92, 246, 0.17),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 15% 80%,
+            rgba(34, 211, 238, 0.06),
+            transparent 30%
+        ),
+        var(--z-bg) !important;
+}
+
+.hero-eyebrow-dot {
+    background: var(--z-purple-light) !important;
+    box-shadow: 0 0 18px var(--z-purple) !important;
+}
+
+.hero-title span {
+    background: linear-gradient(
+        90deg,
+        #FFFFFF 0%,
+        #C4B5FD 35%,
+        #8B5CF6 70%,
+        #22D3EE 100%
+    ) !important;
+
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+.hero-description {
+    color: #B4B4C2 !important;
+}
+
+.hero-btn-primary {
+    background: linear-gradient(
+        110deg,
+        var(--z-purple),
+        var(--z-purple-dark)
+    ) !important;
+
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 10px 30px var(--z-glow);
+}
+
+.hero-btn-primary:hover {
+    background: var(--z-purple-dark) !important;
+    box-shadow: 0 15px 40px rgba(139,92,246,0.35);
+}
+
+.hero-btn-secondary {
+    border-color: var(--z-border) !important;
+}
+
+/* HERO GRAPHICS */
+
+.growth-service,
+.growth-dashboard {
+    border-color: var(--z-border) !important;
+    background: rgba(23, 23, 37, 0.88) !important;
+}
+
+.growth-service-icon {
+    background: rgba(139,92,246,0.18) !important;
+    color: var(--z-purple-light) !important;
+}
+
+.dashboard-line i {
+    background: linear-gradient(
+        90deg,
+        var(--z-purple-dark),
+        var(--z-purple),
+        var(--z-cyan)
+    ) !important;
+}
+
+/* COMMON SECTION COLORS */
+
+.services-section,
+.work-section,
+.pricing-section,
+.about-section {
+    background-color: var(--z-bg) !important;
+}
+
+.services-section::before,
+.about-section::before {
+    background: radial-gradient(
+        circle,
+        rgba(139,92,246,0.13),
+        transparent 70%
+    ) !important;
+}
+
+/* SECTION LABELS */
+
+.section-label,
+.services-intro .section-label,
+.work-intro .section-label,
+.pricing-intro .section-label {
+    color: var(--z-purple-light) !important;
+}
+
+.section-label::before,
+.work-intro .section-label::before {
+    background: var(--z-purple) !important;
+}
+
+/* SERVICES */
+
+.service-item {
+    background: var(--z-card) !important;
+    border-color: var(--z-border) !important;
+}
+
+.service-item:hover {
+    background: var(--z-card-hover) !important;
+    border-color: var(--z-purple) !important;
+    box-shadow: 0 15px 45px rgba(139,92,246,0.12);
+}
+
+.service-number,
+.service-arrow {
+    color: var(--z-purple-light) !important;
+}
+
+.service-heading h3 {
+    color: var(--z-white) !important;
+}
+
+.service-tags span {
+    border-color: var(--z-border) !important;
+}
+
+.services-cta {
+    background:
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(139,92,246,0.20),
+            transparent 45%
+        ),
+        var(--z-card) !important;
+
+    border: 1px solid var(--z-border) !important;
+}
+
+.services-cta-button {
+    background: var(--z-purple) !important;
+    color: #ffffff !important;
+}
+
+/* PORTFOLIO */
+
+.work-section {
+    background:
+        radial-gradient(
+            circle at 10% 15%,
+            rgba(139,92,246,0.10),
+            transparent 30%
+        ),
+        var(--z-bg) !important;
+}
+
+.work-title span,
+.work-cta h3 span {
+    color: var(--z-purple-light) !important;
+}
+
+.work-project {
+    border-color: var(--z-border) !important;
+}
+
+.work-project-title {
+    color: var(--z-white) !important;
+}
+
+.work-project-button {
+    background: var(--z-purple) !important;
+    color: #ffffff !important;
+}
+
+.work-project-button:hover {
+    background: var(--z-purple-dark) !important;
+}
+
+.work-button-arrow,
+.work-cta-button span {
+    background: var(--z-purple-dark) !important;
+    color: #ffffff !important;
+}
+
+.work-cta {
+    background: var(--z-card) !important;
+    border: 1px solid var(--z-border) !important;
+}
+
+.work-cta-button {
+    background: var(--z-purple) !important;
+    color: #ffffff !important;
+}
+
+/* PRICING */
+
+.pricing-section {
+    background:
+        radial-gradient(
+            circle at 10% 15%,
+            rgba(139,92,246,0.11),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 75%,
+            rgba(34,211,238,0.05),
+            transparent 30%
+        ),
+        var(--z-bg) !important;
+}
+
+.pricing-card {
+    background: var(--z-card) !important;
+    border-color: var(--z-border) !important;
+    transition: border-color 0.3s ease,
+                transform 0.3s ease,
+                box-shadow 0.3s ease !important;
+}
+
+.pricing-card:hover {
+    border-color: var(--z-purple) !important;
+    box-shadow: 0 15px 45px rgba(139,92,246,0.13);
+}
+
+.pricing-price strong {
+    color: var(--z-purple-light) !important;
+}
+
+.pricing-card-button,
+.pricing-custom-button {
+    background: var(--z-purple) !important;
+    color: #ffffff !important;
+}
+
+.pricing-card-button:hover,
+.pricing-custom-button:hover {
+    background: var(--z-purple-dark) !important;
+}
+
+/* ABOUT */
+
+.about-section {
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(139,92,246,0.10),
+            transparent 32%
+        ),
+        var(--z-bg) !important;
+}
+
+.about-title span {
+    color: var(--z-purple-light) !important;
+}
+
+.about-principle {
+    border-color: var(--z-border) !important;
+}
+
+.about-cta {
+    background: var(--z-card) !important;
+    border-color: var(--z-border) !important;
+}
+
+/* FOOTER */
+
+.site-footer {
+    background: #07070C !important;
+    border-top: 1px solid var(--z-border) !important;
+}
+
+.footer-logo span {
+    color: var(--z-purple-light) !important;
+}
+
+.footer-email:hover,
+.footer-column a:hover,
+.footer-column a:hover i {
+    color: var(--z-purple-light) !important;
+}
+
+.footer-social-links a:hover {
+    border-color: var(--z-purple) !important;
+    background: rgba(139,92,246,0.12) !important;
+}
+
+.footer-line {
+    background: var(--z-border) !important;
+}
+
+/* GENERAL FOCUS */
+
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--z-purple-light);
+    outline-offset: 4px;
+}
+
+/* MOBILE SAFETY */
+
+@media (max-width: 768px) {
+    .navbar-menu {
+        background: rgba(13,13,22,0.99) !important;
+        border-color: var(--z-border) !important;
+    }
+
+    .nav-link:hover {
+        background: rgba(139,92,246,0.12) !important;
+    }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
